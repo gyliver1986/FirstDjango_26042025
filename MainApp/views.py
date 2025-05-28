@@ -16,12 +16,8 @@ items = [
    {"id": 8, "name": "Кепка" ,"quantity":124},
 ]
 
-def home(request):
-    text = """ 
-    <h1>"Изучаем django"</h1>
-    <strong>Автор</strong>: <i>Гулин А.Н.</i>
-    """
-    return HttpResponse(text)
+def main(request):
+    return render(request, "index.html")
 
 
 
@@ -42,6 +38,15 @@ def get_item(request, item_id: int):
             result = f"""
             <h2> Имя: {item["name"]} </h2>
             <p>  Количество {item["quantity"]} </p>
+            <p> <a href='/items'> Назад к списку товара </a></p>
             """
             return HttpResponse(result)                                           
     return HttpResponseNotFound (f'Item with id={item_id} not found')
+
+
+def get_items(request):
+    result = "<h1> Список товара </h1><ol>"
+    for item in items:
+        result += f""" <li><a href='/item/{item["id"]}'> {item["name"]}</a> </li>"""
+    result += "</ol>"   
+    return HttpResponse(result) 
