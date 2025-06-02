@@ -6,13 +6,20 @@
     <title>item_page</title>
 </head>
 <body>
+    <header>
+        / <a href="/">Home</a> / <a href="/about">about</a> / <a href="/items">items</a>
+    </header>
     
-    {% for item in items %}
-        {%if item.id == item_id%}
-             Имя: {{items.name}} количество: {{items.quantity}} 
-        
-        {% endif %}   
-    {% endfor %}                                       
+    <h2>Имя: {{item.name}}</h2>
+    {% if item.quantity == 0  %}
+        <p>Количество: товар отсутствует.</p>
+        {% else %}
+            <p> Количество : {{item.quantity}}</p>
+    {% endif %}
+    <p><a href="/items">Назад к списку товаров</a></p>
+    
+    
+    
     
     
             
